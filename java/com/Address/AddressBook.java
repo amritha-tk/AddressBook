@@ -84,6 +84,35 @@ public class AddressBook {
 
         AddressBook addList=new AddressBook(firstName,lastName,address,state,city,zip,phone);
         addList.display();
+        System.out.println("Do you want to edit 1.Address 2.State 3.City 4.Zip 5.Phone");
+        int num=sc.nextInt();
+        switch(num)
+        {
+            case 1:System.out.println("Enter the address");
+                    address=sc.next();
+                    addList.setAddress(address);
+                    break;
+            case 2:System.out.println("Enter State");
+                    state=sc.next();
+                    addList.setState(state);
+                    break;
+            case 3:System.out.println("Enter City");
+                    city=sc.next();
+                    addList.setCity(city);
+                    break;
+            case 4:System.out.println("Enter Zip");
+                    zip=sc.nextInt();
+                    addList.setZip(zip);
+                    break;
+            case 5:System.out.println("Enter phone");
+                    phone=sc.next();
+                    addList.setPhone(phone);
+                    break;
+            default:System.out.println("Not applicable");
+                    break;
 
+        }
+        AddressBook addList1=new AddressBook(firstName,lastName,address,state,city,zip,phone);
+        addList.display();
     }
 }
