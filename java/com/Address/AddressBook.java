@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AddressBook {
-    String firstName,lastName,address,state,city;
-    int zip,phone;
+    String firstName,lastName,address,state,city,phone;
+    int zip;
 
-    public AddressBook(String firstName, String lastName, String address,String state, String city, int zip, int phone)
+    public AddressBook(String firstName, String lastName, String address,String state, String city, int zip, String phone)
     {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -35,7 +35,7 @@ public class AddressBook {
     public int getZip(){
         return zip;
     }
-    public int getPhone(){
+    public String getPhone(){
         return phone;
     }
 
@@ -57,10 +57,33 @@ public class AddressBook {
     public void setZip(int zip){
         this.zip=zip;
     }
-    public void setPhone(int phone){
+    public void setPhone(String phone){
         this.phone=phone;
+    }
+    public void display(){
+        System.out.println("\nAddress Book\n FirstName:"+firstName+"\nLastName:"+lastName+"\nAddress:"+address+"\nState:"+state+"\nCity:"+city+"\nZip:"+zip+"\nPhone:"+phone);
     }
     public static void main(String args[]){
         System.out.println("Welcome to Address Book Program");
+        Scanner sc=new Scanner(System.in);
+
+        System.out.println("Enter the first name");
+        String firstName=sc.next();
+        System.out.println("Enter the last name");
+        String lastName=sc.next();
+        System.out.println("Enter address");
+        String address=sc.next();
+        System.out.println("Enter state");
+        String state=sc.next();
+        System.out.println("Enter city");
+        String city=sc.next();
+        System.out.println("Enter zip");
+        int zip=sc.nextInt();
+        System.out.println("Enter phone");
+        String phone=sc.next();
+
+        AddressBook addList=new AddressBook(firstName,lastName,address,state,city,zip,phone);
+        addList.display();
+
     }
 }
