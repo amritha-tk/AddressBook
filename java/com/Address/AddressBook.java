@@ -66,6 +66,7 @@ public class AddressBook {
     public static void main(String args[]){
         System.out.println("Welcome to Address Book Program");
         Scanner sc=new Scanner(System.in);
+        ArrayList<AddressBook> list=new ArrayList<AddressBook>();
 
         System.out.println("Enter the first name");
         String firstName=sc.next();
@@ -112,7 +113,19 @@ public class AddressBook {
                     break;
 
         }
-        AddressBook addList1=new AddressBook(firstName,lastName,address,state,city,zip,phone);
+        list.add(new AddressBook(firstName,lastName,address,state,city,zip,phone));
         addList.display();
+        System.out.println("Enter the name to be deleted");
+        String name=sc.next();
+        //System.out.println(name);
+        for(AddressBook adbook:list)
+        {
+            if(list.contains(name))
+            {
+                //System.out.println("Hi");
+                list.remove(adbook);
+                System.out.println("Removed "+list);
+            }
+        }
     }
 }
