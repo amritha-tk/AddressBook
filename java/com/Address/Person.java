@@ -3,14 +3,14 @@ package com.Address;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class AddressBook {
+public class Person {
     String firstName,lastName,address,state,city,phone;
     int zip;
     int duplicateFlag=0;
     Scanner sc=new Scanner(System.in);
-    ArrayList<AddressBook> list=new ArrayList<AddressBook>();
-    AddressBook adbook;
-    public AddressBook(String firstName, String lastName, String address,String state, String city, int zip, String phone)
+    ArrayList<Person> list=new ArrayList<Person>();
+    Person addressbook;
+    public Person(String firstName, String lastName, String address, String state, String city, int zip, String phone)
     {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -20,7 +20,8 @@ public class AddressBook {
         this.zip = zip;
         this.phone = phone;
     }
-   public String getFirstName(){
+
+    public String getFirstName(){
     return firstName;
     }
     public String getLastName(){
@@ -62,10 +63,10 @@ public class AddressBook {
     public void duplicateEntry(String firstName){
         System.out.println("Checking for duplicate entries");
         if(list.size()>1) {
-            for (int i = 0; i < list.size(); i++) {
-                adbook = (AddressBook) list.get(i);
-                if (firstName.equals(adbook.firstName)) {
-                    System.out.println("Duplicate record found with same first name" + adbook.getFirstName());
+            for (int iteration = 0; iteration < list.size(); iteration++) {
+                addressbook = (Person) list.get(iteration);
+                if (firstName.equals(addressbook.firstName)) {
+                    System.out.println("Duplicate record found with same first name" + addressbook.getFirstName());
                     duplicateFlag = 1;
                 }
             }
@@ -78,7 +79,7 @@ public class AddressBook {
 
         System.out.println("Enter the number of people to be added");
         int numP=sc.nextInt();
-        for(int i=0;i<numP;i++) {
+        for(int iteration=0;iteration<numP;iteration++) {
             System.out.println("Enter the first name");
             firstName = sc.next();
             System.out.println("Enter the last name");
@@ -96,10 +97,10 @@ public class AddressBook {
                 System.out.println("Enter phone");
                 phone = sc.next();
 
-                list.add(new AddressBook(firstName, lastName, address, state, city, zip, phone));
+                list.add(new Person(firstName, lastName, address, state, city, zip, phone));
                 //addList.display();
-                for (AddressBook book : list) {
-                    System.out.println("Firstname :" + book.getFirstName() + "\nLastname :" + book.getLastName() + "\nAddress :" + book.getAddress() + "\nState :" + book.getState() + "\nCity :" + book.getCity() + "Zip :" + book.getZip() + "\nPhone :" + book.getPhone());
+                for (Person person : list) {
+                    System.out.println("Firstname :" + person.getFirstName() + "\nLastname :" + person.getLastName() + "\nAddress :" + person.getAddress() + "\nState :" + person.getState() + "\nCity :" + person.getCity() + "Zip :" + person.getZip() + "\nPhone :" + person.getPhone());
                 }
             }
         }
@@ -107,44 +108,44 @@ public class AddressBook {
     public void editEntry(){
       System.out.println("Enter the first name");
       String firstName=sc.next();
-      for(int i=0;i<list.size();i++){
-          adbook=(AddressBook)list.get(i);
-          if(firstName.equals(adbook.firstName)){
-             System.out.println("Matching record found "+adbook.firstName);
+      for(int iteration=0;iteration<list.size();iteration++){
+          addressbook=(Person)list.get(iteration);
+          if(firstName.equals(addressbook.firstName)){
+             System.out.println("Matching record found "+addressbook.firstName);
              System.out.println("Do you want to edit 1.Address 2.State 3.City 4.Zip 5.Phone");
              int num = sc.nextInt();
              switch (num) {
                  case 1:
                      System.out.println("Enter the address");
                      address = sc.next();
-                     adbook.setAddress(address);
+                     addressbook.setAddress(address);
                      break;
                  case 2:
                      System.out.println("Enter State");
                      state = sc.next();
-                     adbook.setState(state);
+                     addressbook.setState(state);
                      break;
                  case 3:
                      System.out.println("Enter City");
                      city = sc.next();
-                     adbook.setCity(city);
+                     addressbook.setCity(city);
                      break;
                  case 4:
                      System.out.println("Enter Zip");
                      zip = sc.nextInt();
-                     adbook.setZip(zip);
+                     addressbook.setZip(zip);
                      break;
                  case 5:
                      System.out.println("Enter phone");
                      phone = sc.next();
-                     adbook.setPhone(phone);
+                     addressbook.setPhone(phone);
                      break;
                  default:
                      System.out.println("Not applicable");
                      break;
 
              }
-              System.out.println("Firstname :"+adbook.getFirstName()+"\nLastname :"+adbook.getLastName()+"\nAddress :"+adbook.getAddress()+"\nState :"+adbook.getState()+"\nCity :"+adbook.getCity()+"Zip :"+adbook.getZip()+"\nPhone :"+adbook.getPhone());
+              System.out.println("Firstname :"+addressbook.getFirstName()+"\nLastname :"+addressbook.getLastName()+"\nAddress :"+addressbook.getAddress()+"\nState :"+addressbook.getState()+"\nCity :"+addressbook.getCity()+"Zip :"+addressbook.getZip()+"\nPhone :"+addressbook.getPhone());
           }
          else {
              System.out.println("No matching record found");
@@ -154,14 +155,14 @@ public class AddressBook {
     public void deleteEntry() {
         System.out.println("Enter the first name");
         String firstName = sc.next();
-        for (int i = 0; i < list.size(); i++) {
-            adbook = (AddressBook) list.get(i);
-            if (firstName.equals(adbook.firstName)) {
-                System.out.println("Matching record found " + adbook.firstName);
+        for (int iteration = 0; iteration < list.size(); iteration++) {
+            addressbook = (Person) list.get(iteration);
+            if (firstName.equals(addressbook.firstName)) {
+                System.out.println("Matching record found " + addressbook.firstName);
                 System.out.println("Do you want to delete 1.Yes 2.No");
                 int choice = sc.nextInt();
                 if (choice == 1) {
-                    list.remove(i);
+                    list.remove(iteration);
                 } else {
                     System.out.println("No need to delete");
                 }
@@ -173,7 +174,7 @@ public class AddressBook {
         String firstName = null,lastName=null,address=null,state=null,city=null,phone=null;
         int zip=0;
         System.out.println("Welcome to Address Book Program");
-       AddressBook select=new AddressBook(firstName,lastName,address,state,city,zip,phone);
+       Person select=new Person(firstName,lastName,address,state,city,zip,phone);
        while(true){
          System.out.println("Enter the choice 1.Add 2.Edit 3.Delete 4.Quit");
          int choice1=sc.nextInt();
