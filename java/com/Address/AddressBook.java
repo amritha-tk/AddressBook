@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class AddressBook {
     String firstName,lastName,address,state,city,phone;
     int zip;
+    int duplicateFlag=0;
     Scanner sc=new Scanner(System.in);
     ArrayList<AddressBook> list=new ArrayList<AddressBook>();
     AddressBook adbook;
@@ -58,7 +59,21 @@ public class AddressBook {
     public void setPhone(String phone){
         this.phone=phone;
     }
-
+    public void duplicateEntry(String firstName){
+        System.out.println("Checking for duplicate entries");
+        if(list.size()>1) {
+            for (int i = 0; i < list.size(); i++) {
+                adbook = (AddressBook) list.get(i);
+                if (firstName.equals(adbook.firstName)) {
+                    System.out.println("Duplicate record found with same first name" + adbook.getFirstName());
+                    duplicateFlag = 1;
+                }
+            }
+        }
+        else{
+            System.out.println("No records to check duplicates");
+            }
+    }
     public void addEntry(){
 
         System.out.println("Enter the number of people to be added");
@@ -68,21 +83,24 @@ public class AddressBook {
             firstName = sc.next();
             System.out.println("Enter the last name");
             lastName = sc.next();
-            System.out.println("Enter address");
-            address = sc.next();
-            System.out.println("Enter state");
-            state = sc.next();
-            System.out.println("Enter city");
-            city = sc.next();
-            System.out.println("Enter zip");
-            zip = sc.nextInt();
-            System.out.println("Enter phone");
-            phone = sc.next();
+            duplicateEntry(firstName);
+            if(duplicateFlag==0) {
+                System.out.println("Enter address");
+                address = sc.next();
+                System.out.println("Enter state");
+                state = sc.next();
+                System.out.println("Enter city");
+                city = sc.next();
+                System.out.println("Enter zip");
+                zip = sc.nextInt();
+                System.out.println("Enter phone");
+                phone = sc.next();
 
-            list.add(new AddressBook(firstName, lastName, address, state, city, zip, phone));
-            //addList.display();
-            for (AddressBook book : list) {
-                System.out.println("Firstname :"+book.getFirstName()+"\nLastname :"+book.getLastName()+"\nAddress :"+book.getAddress()+"\nState :"+book.getState()+"\nCity :"+book.getCity()+"Zip :"+book.getZip()+"\nPhone :"+book.getPhone());
+                list.add(new AddressBook(firstName, lastName, address, state, city, zip, phone));
+                //addList.display();
+                for (AddressBook book : list) {
+                    System.out.println("Firstname :" + book.getFirstName() + "\nLastname :" + book.getLastName() + "\nAddress :" + book.getAddress() + "\nState :" + book.getState() + "\nCity :" + book.getCity() + "Zip :" + book.getZip() + "\nPhone :" + book.getPhone());
+                }
             }
         }
     }
